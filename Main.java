@@ -17,7 +17,7 @@ public class Main
     public static void Operate(TreeMap<String, String> students)
     {
         int option;
-        Scanner sc = new Scanner(System.in);
+        Scanner keybaord = new Scanner(System.in);
 
         //Loop till user wants to quit
         do
@@ -26,7 +26,7 @@ public class Main
             System.out.println("\n What Would You Like To Do? \n");
             System.out.println(" 1 - Add Student \n 2 - Remove Student \n 3 - Modify Student \n 4 - Print Students \n 5 - Exit \n");
             System.out.print("\n Enter Your Choice: ");
-            option = Integer.parseInt(sc.nextLine());
+            option = Integer.parseInt(keybaord.nextLine());
 
             //Calling appropriate function
             switch (option)
