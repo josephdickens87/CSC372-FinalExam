@@ -157,12 +157,26 @@ public class Main
         Set set = students.entrySet();
 
         //Initializing an iterator
-        Iterator it = set.iterator();
+        //Iterator it = set.iterator();
 
-        System.out.println();
+        Iterator it = students.keySet().iterator();
+        while (it.hasNext())
+        {
+            String key = it.next().toString();
+            String value = students.get(key).toString();
+            System.out.println(key + ":" + value);
+        }
 
         //Displaying elements
-        while (it.hasNext())
+
+
+      /*  for(List value : students.values())
+        {
+            value.forEach(System.out::println);
+        }*/
+
+
+        /*while (it.hasNext())
         {
             //Read each node
             Map.Entry node = (Map.Entry) it.next();
@@ -171,6 +185,16 @@ public class Main
             System.out.print(" " + node.getKey() + " : ");
             System.out.println(node.getValue());
         }
-        System.out.println();
+        System.out.println();*/
+
+        for(Map.Entry<String,List<String>> entry: students.entrySet())
+        {
+            System.out.println(entry.getKey()+":"+entry.getValue());
+        }
+
+        //students.entrySet().stream().forEach(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
+
+
+        }
+
     }
-}
