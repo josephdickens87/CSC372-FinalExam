@@ -7,7 +7,7 @@ public class Main
     public static void main(String[] args)
     {
 
-        TreeMap<String,List<String>> students = new TreeMap<>();
+        TreeMap<String, List<String>> students = new TreeMap<>();
         //TreeMap declaration
         //TreeMap<String, String> students = new TreeMap<>();
 
@@ -16,7 +16,7 @@ public class Main
     }
 
     //Method that prints menu to user and calls the appropriate function based on user option
-    public static void Operate(TreeMap<String,List<String>> students)
+    public static void Operate(TreeMap<String, List<String>> students)
     {
         int option;
         Scanner keyboard = new Scanner(System.in);
@@ -57,50 +57,60 @@ public class Main
     }
 
     //Method that adds student to TreeMap
-    public static void addStudent(TreeMap<String,List<String>> students)
+    public static void addStudent(TreeMap<String, List<String>> students)
     {
         String name;
-        //List grade;
-        List<String> grade = new ArrayList<>();
-
         Scanner keyboard = new Scanner(System.in);
 
         while (true)
         {
-            System.out.println("Enter name:");
-
+            System.out.println("\nEnter student's name:"+"\nEnter 0 when done.\n");
             name = keyboard.next();
+
             if (name.equals("0"))
             {
-                System.out.println("Grades Entered Successfully");
+                System.out.println("\nGrades Entered Successfully");
                 break;
             }
-            System.out.println("Enter grade:");
-            String gradeInput = keyboard.next();
-            grade.add(gradeInput);
-            students.put(name, grade);
+            else if (!students.containsKey(name))
+            {
+                System.out.println("\nEnter Grade");
+                String gradeInput = keyboard.next();
+                List<String> gradeList = new ArrayList<>();
+                gradeList.add(gradeInput);
+                students.put(name, gradeList);
+            }
+            else if (students.containsKey(name))
+            {
+                System.out.println("\nEnter Grade:");
+                String gradeInput = keyboard.next();
+                students.get(name).add(gradeInput);
+            }
         }
     }
 
     //Method that removes student from TreeMap
-    public static void removeStudent(TreeMap<String,List<String>> students)
+    public static void removeStudent(TreeMap<String, List<String>> students)
     {
         String name;
         Scanner keyboard = new Scanner(System.in);
 
         while (true)
         {
-            System.out.println("Enter name:");
+            System.out.println("\nEnter name of student to be removed:"+"\nEnter 0 when done.\n");
 
             name = keyboard.next();
             if (name.equals("0"))
             {
-                System.out.println("Students removed Successfully");
+                System.out.println("\nStudents removed Successfully");
                 break;
             }
             else if (students.containsKey(name))
             {
-                students.remove(name);
+                System.out.println("\nType score of grade to be removed:"+"\n"+students.get(name));
+                String removeInput = keyboard.next();
+                students.get(name).remove(removeInput);
+                System.out.println("\nGrade Removed Successfully");
             }
             else
             {
@@ -110,37 +120,38 @@ public class Main
     }
 
     //Method that modifies student of TreeMap
-    public static void modifyStudent(TreeMap<String,List<String>> students)
+    public static void modifyStudent(TreeMap<String, List<String>> students)
     {
         String name;
-        List<String> grade = new ArrayList<>();
         Scanner keyboard = new Scanner(System.in);
-
         while (true)
         {
-            System.out.println("Enter name:");
+            System.out.println("\nEnter name of student to modify:"+"\nEnter 0 when done.\n");
 
             name = keyboard.next();
             if (name.equals("0"))
             {
-                System.out.println("Students modified Successfully");
+                System.out.println("\nStudents modified Successfully");
                 break;
             }
             else if (students.containsKey(name))
             {
-                System.out.println("Enter grade:");
-                String gradeInput = keyboard.next();
-                grade.add(gradeInput);
+                System.out.println("\nType grade score to be modified:"+"\n"+students.get(name));
+                String modifyInput = keyboard.next();
+                students.get(name).remove(modifyInput);
+                System.out.println("\nEnter new grade:");
+                String newGrade = keyboard.next();
+                students.get(name).add(newGrade);
             }
             else
             {
-                System.out.println("\n Student named " + name + " does not exist.");
+                System.out.println("\nStudent named " + name + " does not exist.");
             }
         }
     }
 
     //Method that prints the TreeMap
-    public static void printStudent(TreeMap<String,List<String>> students)
+    public static void printStudent(TreeMap<String, List<String>> students)
     {
         //Reading set of entries
         Set set = students.entrySet();
@@ -163,5 +174,3 @@ public class Main
         System.out.println();
     }
 }
-
-
